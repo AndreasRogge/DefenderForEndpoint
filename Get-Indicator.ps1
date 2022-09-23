@@ -1,20 +1,21 @@
 function Get-Indicator {
     [CmdletBinding()]
     param (
-        # Parameter help description
+        # Get All indicators. Attention Web Content Filtering is also inside the results
         [Parameter(Mandatory = $false)]
         [switch]
         $All,
 
-        #an input parameter for the alert's ID
+        #indicator value like 1.1.1.1 or https://google.com
         [Parameter(Mandatory = $false)]
         [string[]]$indicatorValue,
 
-        #validate that the input contains valid value
+        #get indicator with the following type
         [Parameter(Mandatory = $false)]
         [ValidateSet('FileSha1', 'FileMd5', 'FileSha256', 'IpAddress', 'DomainName', 'Url', 'CertificateThumbprint')]  
         [string[]]$indicatorType,
 
+        #which Device Group should be get indicator
         [Parameter(Mandatory = $false)]
         [string[]]$GroupNames
     )

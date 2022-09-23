@@ -1,6 +1,7 @@
 function Remove-Indicator {
     [CmdletBinding()]
-    param (   
+    param (
+        #id from indicator which can be obtained with Get-Indicator
         [Parameter(Mandatory = $true)]
         [int]$indicatorId
     )

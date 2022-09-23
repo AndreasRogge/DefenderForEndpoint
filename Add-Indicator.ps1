@@ -1,30 +1,38 @@
 function Add-Indicator {
     [CmdletBinding()]
-    param (   
+    param (
+        #add indicator with the following type
         [Parameter(Mandatory = $true)]
-        [ValidateSet('FileSha1', 'FileSha256', 'IpAddress', 'DomainName', 'Url')]   #validate that the input contains valid value
+        [ValidateSet('FileSha1', 'FileMd5', 'FileSha256', 'IpAddress', 'DomainName', 'Url', 'CertificateThumbprint')]   
         [string]$indicatorType,
 
+        #indicator value like 1.1.1.1 or https://google.com
         [Parameter(Mandatory = $true)]
-        [string]$indicatorValue, #an input parameter for the alert's ID	    
+        [string]$indicatorValue,    
     
+        #should the indicator be blocked or allowed
         [Parameter(Mandatory = $false)]
-        [ValidateSet('BlockAndRemediate', 'Block', 'Allowed')]   #validate that the input contains valid value
-        [string]$action = 'Alert', #set default action to 'Alert'
+        [ValidateSet('BlockAndRemediate', 'Block', 'Allowed')]
+        [string]$action = 'Alert',
     
+        #title to identitfy the indicator
         [Parameter(Mandatory = $true)]
         [string]$title,     
    
+        #severity when user opens indicator
         [Parameter(Mandatory = $false)]
-        [ValidateSet('Informational', 'Low', 'Medium', 'High')]   #validate that the input contains valid value
-        [string]$severity = 'Informational', #set default severity to 'informational'
+        [ValidateSet('Informational', 'Low', 'Medium', 'High')]
+        [string]$severity = 'Informational',
     
+        #description of indicator
         [Parameter(Mandatory = $true)]
         [string]$description,
 
+        #which Device Group should be added to this indicator
         [Parameter(Mandatory = $false)]
         [string[]]$GroupNames,
 
+        #description of the action that should be done
         [Parameter(Mandatory = $false)]
         [string]$recommendedActions     
     )
